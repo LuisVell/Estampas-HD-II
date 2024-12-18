@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        body{
+            padding: 0px;
+            margin: 0px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        };
+    </style>
+    <script>
+        function getColor(id){
+            let c = document.getElementById(id)
+            switch (id){
+                case 'modColor':
+                    ModBG = c.value;
+                    break;
+                case 'backColor':
+                    BG = c.value;
+                    break;
+            }
+            draw()
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
+</head>
+<html>
+    <header style="margin: 2vw; display: flex;">
+        <a target="_self" href="../.."> Home</a>
+        <button onclick="RandomColor()">Cor Aleatoria</button>
+        <div>
+            Modulo
+            <input id="modColor" onchange="getColor('modColor')" type="color">
+        </div>
+        <div>
+            Fundo
+            <input id="backColor" onchange="getColor('backColor')" type="color">
+        </div>
+    </header>
+    <script src="sketch.js"></script>
+</html>
