@@ -1,10 +1,61 @@
 <!DOCTYPE html>
 <head>
-    <title>TT</title>
+    <title>Estampas</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+            overflow: hidden;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        a{
+            transition: all 0.5s ease;
+            font-size: 20px;
+            padding: 20px;
+
+            background-color: white;
+            border: 1px black solid;
+            border-radius: 10px;
+
+            color: black;
+            text-decoration: none;
+        }
+        a:hover{
+            font-size: 30px;
+            padding: 100px;
+
+            background-color: black;
+            border-radius: 30px;
+
+            color: white;
+            text-decoration: none;
+        }
+        .Menu{
+            position:absolute;
+            height:100%;
+            width:100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .Fundo{
+            z-index: -100;
+            position:absolute;
+        }
+    </style>
 </head>
 <body>
-    <a target="_self" href="Estilo/Streamline">StreamLine</a>
-    <a target="_self" href="Estilo/Ulm">Escola de Ulm</a>
-    <a target="_self" href="Estilo/Italiano_fif/">Italiano Anos 50</a>
+    <div class="Menu">
+        <a target="_self" href="Estilo/Bauhaus">Bauhaus</a>
+        <a target="_self" href="Estilo/Swiss">Swiss</a>
+        <a target="_self" href="Estilo/Streamline">StreamLine</a>
+        <a target="_self" href="Estilo/Ulm">Escola de Ulm</a>
+        <a target="_self" href="Estilo/Italiano_fif/">Italiano Anos 50</a>
+        <a target="_self" href="Estilo/Psicodelismo/">Psicodelismo</a>
+    </div>
+    <div class="Fundo" id="Draw"></div>
+    <script src="sketch.js"></script>
 </body>
 </html>

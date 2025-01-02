@@ -1,16 +1,78 @@
 <!DOCTYPE html>
-<head>
-    <style>
-        body{
-            padding: 0px;
-            margin: 0px;
-        };
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
-</head>
-<html>
-    <header style="margin: 2vw; display: flex;">
-        <a target="_self" href="../.."> Home</a>
-    </header>
-    <script src="sketch.js"></script>
+    <head>
+        <title>Escola de Ulm</title>
+        <link rel="stylesheet" href="../../Styles.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
+        <script>
+            function FillColors(){
+                let divC = document.getElementById('box-ColorsContainer')
+                divC.innerHTML=''
+                for(let i=0;i<Colors.length;i++){
+                    divC.innerHTML+='<input type="color" value="'+Colors[i]+'" id="OcustomColor-'+String(i)+'" onChange="ColorArrayEdit(1,'+String(i)+')">'
+                }
+                let div = document.getElementById('box-ColorsXContainer')
+                div.innerHTML=''
+                for(let i = 0;i<ColorsXtra.length;i++){
+                    div.innerHTML+='<div>'+String(i+1)+'- <input id="customColor-'+String(i)+'" onChange="ColorArrayEdit(0,'+String(i)+')" type="color" value="'+ColorsXtra[i]+'"><button onClick="DeleteColor('+String(i)+')">X</button></div>'
+                };
+                div.innerHTML+='<button onClick="AddColor()">+</button>'
+            }
+            function ColorArrayEdit(f,i){
+                let input = document.getElementById((f==1?'O':'')+'customColor-'+String(i))
+                if(f==1){
+                    Colors[i] = input.value
+                }else{
+                    ColorsXtra[i] = input.value
+                }
+            }
+
+            function DeleteColor(i){
+                ColorsXtra.splice(i, 1)
+                FillColors()
+            }
+
+            function AddColor(){
+                if(ColorsXtra.length>7){
+                    return
+                }
+                ColorsXtra.push('#'+Math.floor(Math.random()*16777215).toString(16))
+                FillColors()
+            }
+
+            function ChangeBG(){
+                BG = document.getElementById('BG').value
+            }
+
+            function SetAnim(b){
+                anim = b.value==1?true:false
+            }
+
+            window.onload = ()=>{
+                FillColors()
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            <div id="MainHeader">
+                <a target="_self" href="../.."> Home</a>
+                <div>
+                    Auto-Gerar:
+                    <label>On<input type="radio" name="ani" value="1" onchange="SetAnim(this)"></label>
+                    <label>Off<input type="radio" name="ani" value="0" onchange="SetAnim(this)" checked></label>
+                </div>
+                <div style="width: fit-content;">
+                    <button onclick="Generate()">Gerar</button>
+                    <button onclick="Save()">Salvar</button>
+                </div>
+            </div>
+            <input type="color" value="#fa3e00" id="BG" id="BG" onchange="ChangeBG()">
+            <div id="box-ColorsContainer"></div>
+            <div id="box-ColorsXContainer"></div>
+        </header>
+        <div id="Draw">
+
+        </div>
+        <script src="sketch.js"></script>
+    </body>
 </html>

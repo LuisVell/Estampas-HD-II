@@ -1,0 +1,48 @@
+body{
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header{
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 3px black solid;
+}
+
+#MainHeader{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: 1px solid black;
+}
+
+#box-ColorsContainer{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: 1px solid black;
+}
+
+#box-ColorsXContainer{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#Draw{
+    min-height:90%;
+}

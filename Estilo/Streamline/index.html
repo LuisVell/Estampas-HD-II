@@ -1,42 +1,48 @@
 <!DOCTYPE html>
-<head>
-    <style>
-        body{
-            padding: 0px;
-            margin: 0px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        };
-    </style>
-    <script>
-        function getColor(id){
-            let c = document.getElementById(id)
-            switch (id){
-                case 'modColor':
-                    ModBG = c.value;
-                    break;
-                case 'backColor':
-                    BG = c.value;
-                    break;
+    <head>
+        <title>Streamline</title>
+        <link rel="stylesheet" href="../../Styles.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
+        <script>
+            function ChangeColor(b,i){
+                if(i==0){
+                    BG = b.value
+                }else{
+                    Lines = b.value
+                }
+                Generate()
             }
-            draw()
-        }
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
-</head>
-<html>
-    <header style="margin: 2vw; display: flex;">
-        <a target="_self" href="../.."> Home</a>
-        <button onclick="RandomColor()">Cor Aleatoria</button>
-        <div>
-            Modulo
-            <input id="modColor" onchange="getColor('modColor')" type="color">
+
+            function SetAnim(b){
+                anim = b.value==1?true:false
+            }
+
+        </script>
+    </head>
+    <body>
+        <header>
+            <div id="MainHeader">
+                <a target="_self" href="../.."> Home</a>
+                <div>
+                    Auto-Gerar:
+                    <label>On<input type="radio" name="ani" value="1" onchange="SetAnim(this)"></label>
+                    <label>Off<input type="radio" name="ani" value="0" onchange="SetAnim(this)" checked></label>
+                </div>
+                <div style="width: fit-content;">
+                    <button onclick="Generate()">Gerar</button>
+                    <button onclick="Save()">Salvar</button>
+                </div>
+            </div>
+            </div>
+            <div id="box-ColorsContainer">
+                <input type="color" onchange="ChangeColor(this,0)" value="#000000">
+                <input type="color" onchange="ChangeColor(this,1)" value="#FFFFFF">
+            </div>
+            <!--<div id="box-ColorsXContainer"></div>-->
+        </header>
+        <div id="Draw">
+
         </div>
-        <div>
-            Fundo
-            <input id="backColor" onchange="getColor('backColor')" type="color">
-        </div>
-    </header>
-    <script src="sketch.js"></script>
+        <script src="sketch.js"></script>
+    </body>
 </html>

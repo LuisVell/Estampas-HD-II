@@ -1,15 +1,28 @@
 let TriangleSize = 50;
 let QuadSize = 100;
+let BG = "#fa3e00";
 let Colors = ["#2845b8", "#b328b8", "#25ad10"];
-let Frames = 20;
-let NowFrame = 0;
+let ColorsXtra = []
+
+let anim = false;
+
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    frameRate(1);
+    Generate();
+    frameRate(1)
 }
 
 function draw() {
-    NowFrame += 1;
+    if(anim){
+        Generate()
+    }
+}
+
+function Save(){
+    saveCanvas('Italiano -'+Date.now()+'.jpg')
+}
+
+function Generate(){
     background(120, 140, 0);
     rotate(PI / 4);
     Unity(100, 100);
@@ -28,7 +41,7 @@ function EquiTriangle(X, Y, W) {
 function Unity(X, Y) {
     push(); //Layer 0
     translate(X, Y);
-    fill("#fa3e00");
+    fill(BG);
     square(0, 0, QuadSize); //Fundo
     push(); //Layer 1
     translate(QuadSize / 2, QuadSize / 2);
@@ -43,4 +56,9 @@ function Unity(X, Y) {
     );
     pop(); //L0
     pop(); //L1
+}
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+    Generate()
 }
