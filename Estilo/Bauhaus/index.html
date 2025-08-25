@@ -1,21 +1,25 @@
 <!DOCTYPE html>
     <head>
         <title>Bauhaus</title>
+        <meta charset="UTF-8">
         <link rel="stylesheet" href="../../Styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Baumans&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
         <script>
             function FillColors(){
                 let divC = document.getElementById('box-ColorsContainer')
                 divC.innerHTML=''
                 for(let i=0;i<Colors.length;i++){
-                    divC.innerHTML+='<input type="color" value="'+Colors[i]+'" id="OcustomColor-'+String(i)+'" onChange="ColorArrayEdit(1,'+String(i)+')">'
+                    divC.innerHTML+='<input class="btnBaseColors" type="color" value="'+Colors[i]+'" id="OcustomColor-'+String(i)+'" onChange="ColorArrayEdit(1,'+String(i)+')">'
                 }
                 let div = document.getElementById('box-ColorsXContainer')
                 div.innerHTML=''
                 for(let i = 0;i<ColorsXtra.length;i++){
-                    div.innerHTML+='<div>'+String(i+1)+'- <input id="customColor-'+String(i)+'" onChange="ColorArrayEdit(0,'+String(i)+')" type="color" value="'+ColorsXtra[i]+'"><button onClick="DeleteColor('+String(i)+')">X</button></div>'
+                    div.innerHTML+='<div class="customColorUnit"><input class="btnBaseColors" id="customColor-'+String(i)+'" onChange="ColorArrayEdit(0,'+String(i)+')" type="color" value="'+ColorsXtra[i]+'"><button class="customColorX" onClick="DeleteColor('+String(i)+')">X</button></div>'
                 };
-                div.innerHTML+='<button onClick="AddColor()">+</button>'
+                div.innerHTML+='<button id="btnAddColor" onClick="AddColor()">+</button>'
             }
             function ColorArrayEdit(f,i){
                 let input = document.getElementById((f==1?'O':'')+'customColor-'+String(i))
@@ -39,8 +43,14 @@
                 FillColors()
             }
 
-            function SetAnim(b){
-                anim = b.value==1?true:false
+            function Reset_Colors(){
+                Colors = BaseColors.map((x)=>x)
+                color
+                FillColors()
+            }
+            function Del_CustomColors(){
+                ColorsXtra = []
+                FillColors()
             }
 
             window.onload = ()=>{
@@ -49,26 +59,33 @@
         </script>
     </head>
     <body>
-        <header>
-            <div id="MainHeader">
-                <a target="_self" href="../.."> Home</a>
-                <div>
-                    Auto-Gerar:
-                    <label>On<input type="radio" name="ani" value="1" onchange="SetAnim(this)"></label>
-                    <label>Off<input type="radio" name="ani" value="0" onchange="SetAnim(this)" checked></label>
-                </div>
-                <div style="width: fit-content;">
-                    <button onclick="Generate()">Gerar</button>
-                    <button onclick="Save()">Salvar</button>
-                </div>
+        <div class="sideBar">
+            <div id="voltar">
+                <a target="_self" href="../..">◀ Voltar</a>
             </div>
+            <h1 id="pageTitle" style="font-family: 'Baumans', system-ui;font-size: 64px;">Bauhaus</h1>
+            <div id="genSav">
+                <button class="btnGenSav" onclick="Generate()">Gerar</button>
+                <button class="btnGenSav" onclick="Save()">Salvar</button>
             </div>
-            <div id="box-ColorsContainer"></div>
-            <div id="box-ColorsXContainer"></div>
-        </header>
-        <div id="Draw">
-
+            <div class="dividerLateral">
+                <div class="latTitleBtn">
+                    <p class="latTitle">Paleta Base</p>
+                    <button class="latBtn" onclick="Reset_Colors()">reset</button>
+                </div>
+                <hr>
+                <div id="box-ColorsContainer"></div>
+            </div>
+            <div class="dividerLateral">
+                <div class="latTitleBtn">
+                    <p class="latTitle">Paleta Extra</p>
+                    <p class="latBtn" onclick="Del_CustomColors()">limpar</p>
+                </div>
+                <hr>
+                <div id="box-ColorsXContainer"></div>
+            </div>
         </div>
+        <div id="Draw"></div>
         <script src="sketch.js"></script>
     </body>
 </html>

@@ -1,14 +1,15 @@
 let Mod;
 let ModSize = 100;
-let Gap = 0;
 let BG = '#000000';
+let BGO = '#000000';
 let Lines = '#FFFFFF'
-let Copy = false;
-let KeepDraw = false;
+let LinesO = '#FFFFFF'
 let FillX;
 let FillY;
 
-let anim = false;
+function preload() {
+    Mod = loadImage("modulo.svg");
+}
 
 function setup() {
     var cnv = createCanvas(windowWidth,windowHeight)
@@ -17,21 +18,10 @@ function setup() {
     FillY = height / ModSize + 1;
     imageMode(CENTER);
     Generate();
-    frameRate(1)
 }
 
 function Save(){
     saveCanvas('Streamline -'+Date.now()+'.jpg')
-}
-
-function preload() {
-    Mod = loadImage("modulo.svg");
-}
-
-function draw(){
-    if(anim){
-        Generate()
-    }
 }
 
 function Generate() {
@@ -48,8 +38,8 @@ function Generate() {
                 FRot = 4;
             }
             translate(
-                x * (ModSize + Gap) + ModSize / 2,
-                y * (ModSize + Gap) + ModSize / 2
+                x * (ModSize) + ModSize / 2,
+                y * (ModSize) + ModSize / 2
             );
             rotate(radians(r * 90));
             fill(BG);

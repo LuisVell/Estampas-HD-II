@@ -1,11 +1,11 @@
 <!DOCTYPE html>
     <head>
-        <title>Psicodelismo</title>
+        <title>New Wave</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../../Styles.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Chicle&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Joti+One&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
         <script>
             function FillColors(){
@@ -14,42 +14,17 @@
                 for(let i=0;i<Colors.length;i++){
                     divC.innerHTML+='<input class="btnBaseColors" type="color" value="'+Colors[i]+'" id="OcustomColor-'+String(i)+'" onChange="ColorArrayEdit(1,'+String(i)+')">'
                 }
-                let div = document.getElementById('box-ColorsXContainer')
-                div.innerHTML=''
-                for(let i = 0;i<ColorsXtra.length;i++){
-                    div.innerHTML+='<div class="customColorUnit"><input class="btnBaseColors" id="customColor-'+String(i)+'" onChange="ColorArrayEdit(0,'+String(i)+')" type="color" value="'+ColorsXtra[i]+'"><button class="customColorX" onClick="DeleteColor('+String(i)+')">X</button></div>'
-                };
-                div.innerHTML+='<button id="btnAddColor" onClick="AddColor()">+</button>'
             }
             function ColorArrayEdit(f,i){
                 let input = document.getElementById((f==1?'O':'')+'customColor-'+String(i))
                 if(f==1){
                     Colors[i] = input.value
-                }else{
-                    ColorsXtra[i] = input.value
                 }
-            }
-
-            function DeleteColor(i){
-                ColorsXtra.splice(i, 1)
-                FillColors()
-            }
-
-            function AddColor(){
-                if(ColorsXtra.length>7){
-                    return
-                }
-                ColorsXtra.push('#'+Math.floor(Math.random()*16777215).toString(16))
-                FillColors()
             }
 
             function Reset_Colors(){
                 Colors = BaseColors.map((x)=>x)
                 color
-                FillColors()
-            }
-            function Del_CustomColors(){
-                ColorsXtra = []
                 FillColors()
             }
 
@@ -63,7 +38,7 @@
             <div id="voltar">
                 <a target="_self" href="../..">◀ Voltar</a>
             </div>
-            <h1 id="pageTitle" style="font-family: 'Chicle', serif;font-size: 64px;">Psicodelismo</h1>
+            <h1 id="pageTitle" style="font-family: 'Joti One', serif;font-size: 50px;">New Wave</h1>
             <div id="genSav">
                 <button class="btnGenSav" onclick="Generate()">Gerar</button>
                 <button class="btnGenSav" onclick="Save()">Salvar</button>
@@ -75,14 +50,6 @@
                 </div>
                 <hr>
                 <div id="box-ColorsContainer"></div>
-            </div>
-            <div class="dividerLateral">
-                <div class="latTitleBtn">
-                    <p class="latTitle">Paleta Extra</p>
-                    <p class="latBtn" onclick="Del_CustomColors()">limpar</p>
-                </div>
-                <hr>
-                <div id="box-ColorsXContainer"></div>
             </div>
         </div>
         <div id="Draw"></div>

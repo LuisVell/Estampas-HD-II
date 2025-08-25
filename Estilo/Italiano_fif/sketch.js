@@ -3,21 +3,13 @@ let Minicircle = 40;
 let SpaceBtwX = 0;
 let SpaceBtwY = 0;
 let Colors = ["#000000", "#2845b8", "#b328b8", "#25ad10", "#fc5a03", "#03fcf4"];
+let BaseColors = Colors.slice();;
 let ColorsXtra = []
-
-let anim = false;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
     noStroke();
     Generate();
-    frameRate(1)
-}
-
-function draw(){
-    if(anim){
-        Generate()
-    }
 }
 
 function Save(){
@@ -35,7 +27,7 @@ function Generate() {
 
 function Modulo(x, y) {
     push();
-    let c =  Colors.slice().concat(ColorsXtra.slice());
+    let c =  Colors.concat(ColorsXtra);
     while(c[0]=='#000000'){
         c.sort(() => Math.random() - 0.5);
     }

@@ -1,7 +1,11 @@
 <!DOCTYPE html>
     <head>
         <title>Streamline</title>
+        <meta charset="UTF-8">
         <link rel="stylesheet" href="../../Styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
         <script>
             function ChangeColor(b,i){
@@ -12,37 +16,38 @@
                 }
                 Generate()
             }
-
-            function SetAnim(b){
-                anim = b.value==1?true:false
+            function Reset_Colors(){
+                Lines = LinesO
+                BG = BGO
+                let btns = document.getElementsByClassName('btnBaseColors')
+                btns[0].value = BGO
+                btns[1].value = LinesO
             }
-
         </script>
     </head>
     <body>
-        <header>
-            <div id="MainHeader">
-                <a target="_self" href="../.."> Home</a>
-                <div>
-                    Auto-Gerar:
-                    <label>On<input type="radio" name="ani" value="1" onchange="SetAnim(this)"></label>
-                    <label>Off<input type="radio" name="ani" value="0" onchange="SetAnim(this)" checked></label>
+        <div class="sideBar">
+            <div id="voltar">
+                <a target="_self" href="../..">◀ Voltar</a>
+            </div>
+            <h1 id="pageTitle" style="font-family: 'Racing Sans One', sans-serif;font-size: 50px;">Streamline</h1>
+            <div id="genSav">
+                <button class="btnGenSav" onclick="Generate()">Gerar</button>
+                <button class="btnGenSav" onclick="Save()">Salvar</button>
+            </div>
+            <div class="dividerLateral">
+                <div class="latTitleBtn">
+                    <p class="latTitle">Paleta Base</p>
+                    <button class="latBtn" onclick="Reset_Colors()">reset</button>
                 </div>
-                <div style="width: fit-content;">
-                    <button onclick="Generate()">Gerar</button>
-                    <button onclick="Save()">Salvar</button>
+                <hr>
+                <div id="box-ColorsContainer">
+                    <input class="btnBaseColors" type="color" onchange="ChangeColor(this,0)" value="#000000">
+                    <input class="btnBaseColors" type="color" onchange="ChangeColor(this,1)" value="#FFFFFF">
                 </div>
             </div>
-            </div>
-            <div id="box-ColorsContainer">
-                <input type="color" onchange="ChangeColor(this,0)" value="#000000">
-                <input type="color" onchange="ChangeColor(this,1)" value="#FFFFFF">
-            </div>
-            <!--<div id="box-ColorsXContainer"></div>-->
-        </header>
-        <div id="Draw">
-
         </div>
+        <div id="Draw"></div>
         <script src="sketch.js"></script>
     </body>
 </html>

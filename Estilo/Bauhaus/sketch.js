@@ -1,8 +1,7 @@
 let QuadSize = 60;
 let Colors = ["#DDBA2C", "#2372B4", "#AD2B33"];
+let BaseColors = Colors.slice();;
 let ColorsXtra = []
-
-let anim = false;
 
 
 function setup() {
@@ -10,13 +9,6 @@ function setup() {
     cnv.parent('Draw')
     strokeWeight(0.5);
     Generate();
-    frameRate(1)
-}
-
-function draw() {
-    if(anim){
-        Generate()
-    }
 }
 
 function Save(){
@@ -24,8 +16,7 @@ function Save(){
 }
 
 function Generate() {
-    //Grid
-    ///vazio
+    //Cria um grid vazio
     let grid = [];
     for (let i = 0; i < int(height/QuadSize)+1; i++) {
         let subList = [];
@@ -33,18 +24,18 @@ function Generate() {
             subList.push(false);
         }
         grid.push(subList);
-    } ///Fill
+    } //Popula o grid
     for (let i = 0; i < grid.length; i++) {
         for (let f = 0; f < grid[i].length; f++) {
-            if (!grid[i][f]) {
+            if (!grid[i][f]) { //Ignora lugares ocupados
                 let colors = (Colors.slice().concat(ColorsXtra.slice())).sort(() => Math.random() - 0.5);
                 push();
                 translate(f * QuadSize, i * QuadSize);
                 fill(colors[0]);
-                let quadSize = QuadSize; //Quadrado Maior
+                let quadSize = QuadSize;
                 if (int(random(0, 20)) == 0) {
                     if (i+1 < grid.length && f+1 < grid[i].length) {
-                        if (
+                        if ( /*Checa se pode ser o quadrado maior*/
                             !(
                                 grid[i][f+1] &&
                                 grid[i+1][f+1] &&

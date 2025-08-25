@@ -9,6 +9,7 @@ let tetrominos = [
     [[0, 1],[0, 2],[-1, 2],], //j
 ];
 let Colors = ["#000080","#800000","#008000","#008080","#808000","#800080","#c0c0c0",];
+let BaseColors = Colors.slice();;
 
 let anim = false;
 
@@ -16,17 +17,10 @@ function setup() {
     var cnv = createCanvas(windowWidth,windowHeight)
     cnv.parent('Draw')
     Generate()
-    frameRate(1)
 }
 
 function Save(){
     saveCanvas('Escola Suica -'+Date.now()+'.jpg')
-}
-
-function draw() {
-    if(anim){
-        Generate()
-    }
 }
 
 function Generate(){
@@ -66,19 +60,89 @@ function Generate(){
     }
 }
 
-function Pattern6() {
+/* Seria demorado demais criar um sistema que populasse o grid com tetrominos, logo foram criados padrões retangulares de tamanhos conhecidos para facilitar o processo*/
+
+function Pattern1() {
+    tetromino(0);
+    push();
+    translate(2 * QuadSize, 3 * QuadSize);
+    tetromino(0);
+    pop();
+    push();
+    translate(0, 2 * QuadSize);
+    tetromino(5);
+    pop();
+    push();
+    translate(3 * QuadSize, QuadSize);
+    rotate(radians(90));
+    tetromino(3);
+    pop();
+    push();
+    translate(4 * QuadSize, 3 * QuadSize);
+    rotate(radians(180));
+    tetromino(5);
+    pop();
+}
+
+function Pattern2() {
+    tetromino(1);
+    push();
+    translate(QuadSize, 0);
+    tetromino(0);
+    pop();
     push();
     translate(3 * QuadSize, 0);
+    tetromino(1);
+    pop();
+    push();
+    translate(2 * QuadSize, 2 * QuadSize);
+    tetromino(5);
+    pop();
+    push();
+    translate(QuadSize, 2 * QuadSize);
     tetromino(6);
+    pop();
+}
+
+function Pattern3() {
+    tetromino(1);
+    push();
+    translate(4 * QuadSize, 0);
+    rotate(radians(90));
+    tetromino(5);
+    pop();
+    push();
+    translate(3 * QuadSize, QuadSize);
+    rotate(radians(90));
+    tetromino(3);
+    pop();
+    push();
+    translate(3 * QuadSize, QuadSize);
+    tetromino(6);
+    pop();
+}
+
+function Pattern4() {
+    push();
+    translate(3 * QuadSize, 0);
+    tetromino(1);
+    pop();
+    push();
+    translate(0, 2 * QuadSize);
+    tetromino(2);
+    pop();
+    push();
+    translate(2 * QuadSize, 2 * QuadSize);
+    tetromino(5);
+    pop();
+    push();
+    translate(0, 3 * QuadSize);
+    tetromino(0);
     pop();
     push();
     translate(3 * QuadSize, 0);
     rotate(radians(90));
     tetromino(5);
-    pop();
-    push();
-    translate(0, 2 * QuadSize);
-    tetromino(2);
     pop();
 }
 
@@ -119,91 +183,23 @@ function Pattern5() {
     pop();
 }
 
-function Pattern4() {
+function Pattern6() {
     push();
     translate(3 * QuadSize, 0);
-    tetromino(1);
+    tetromino(6);
+    pop();
+    push();
+    translate(3 * QuadSize, 0);
+    rotate(radians(90));
+    tetromino(5);
     pop();
     push();
     translate(0, 2 * QuadSize);
     tetromino(2);
     pop();
-    push();
-    translate(2 * QuadSize, 2 * QuadSize);
-    tetromino(5);
-    pop();
-    push();
-    translate(0, 3 * QuadSize);
-    tetromino(0);
-    pop();
-    push();
-    translate(3 * QuadSize, 0);
-    rotate(radians(90));
-    tetromino(5);
-    pop();
 }
 
-function Pattern3() {
-    tetromino(1);
-    push();
-    translate(4 * QuadSize, 0);
-    rotate(radians(90));
-    tetromino(5);
-    pop();
-    push();
-    translate(3 * QuadSize, QuadSize);
-    rotate(radians(90));
-    tetromino(3);
-    pop();
-    push();
-    translate(3 * QuadSize, QuadSize);
-    tetromino(6);
-    pop();
-}
-
-function Pattern2() {
-    tetromino(1);
-    push();
-    translate(QuadSize, 0);
-    tetromino(0);
-    pop();
-    push();
-    translate(3 * QuadSize, 0);
-    tetromino(1);
-    pop();
-    push();
-    translate(2 * QuadSize, 2 * QuadSize);
-    tetromino(5);
-    pop();
-    push();
-    translate(QuadSize, 2 * QuadSize);
-    tetromino(6);
-    pop();
-}
-
-function Pattern1() {
-    tetromino(0);
-    push();
-    translate(2 * QuadSize, 3 * QuadSize);
-    tetromino(0);
-    pop();
-    push();
-    translate(0, 2 * QuadSize);
-    tetromino(5);
-    pop();
-    push();
-    translate(3 * QuadSize, QuadSize);
-    rotate(radians(90));
-    tetromino(3);
-    pop();
-    push();
-    translate(4 * QuadSize, 3 * QuadSize);
-    rotate(radians(180));
-    tetromino(5);
-    pop();
-}
-
-function tetromino(m) {
+function tetromino(m) { /*Essa função traduz os tetrominos para formas*/
     fill(Colors[m]);
     let t = tetrominos[m];
     quad(0, 0, QuadSize, 0, QuadSize, QuadSize, 0, QuadSize);

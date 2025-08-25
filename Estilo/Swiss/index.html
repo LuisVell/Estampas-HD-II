@@ -1,6 +1,7 @@
 <!DOCTYPE html>
     <head>
-        <title>Escola Suiça</title>
+        <title>Swiss</title>
+        <meta charset="UTF-8">
         <link rel="stylesheet" href="../../Styles.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
         <script>
@@ -8,7 +9,7 @@
                 let divC = document.getElementById('box-ColorsContainer')
                 divC.innerHTML=''
                 for(let i=0;i<Colors.length;i++){
-                    divC.innerHTML+='<input type="color" value="'+Colors[i]+'" id="OcustomColor-'+String(i)+'" onChange="ColorArrayEdit(1,'+String(i)+')">'
+                    divC.innerHTML+='<input class="btnBaseColors" type="color" value="'+Colors[i]+'" id="OcustomColor-'+String(i)+'" onChange="ColorArrayEdit(1,'+String(i)+')">'
                 }
             }
             function ColorArrayEdit(f,i){
@@ -20,21 +21,10 @@
                 }
             }
 
-            function DeleteColor(i){
-                ColorsXtra.splice(i, 1)
+            function Reset_Colors(){
+                Colors = BaseColors.map((x)=>x)
+                color
                 FillColors()
-            }
-
-            function AddColor(){
-                if(ColorsXtra.length>7){
-                    return
-                }
-                ColorsXtra.push('#'+Math.floor(Math.random()*16777215).toString(16))
-                FillColors()
-            }
-
-            function SetAnim(b){
-                anim = b.value==1?true:false
             }
 
             window.onload = ()=>{
@@ -43,24 +33,25 @@
         </script>
     </head>
     <body>
-        <header>
-            <div id="MainHeader">
-                <a target="_self" href="../.."> Home</a>
-                <div>
-                    Auto-Gerar:
-                    <label>On<input type="radio" name="ani" value="1" onchange="SetAnim(this)"></label>
-                    <label>Off<input type="radio" name="ani" value="0" onchange="SetAnim(this)" checked></label>
-                </div>
-                <div style="width: fit-content;">
-                    <button onclick="Generate()">Gerar</button>
-                    <button onclick="Save()">Salvar</button>
-                </div>
+        <div class="sideBar">
+            <div id="voltar">
+                <a target="_self" href="../..">◀ Voltar</a>
             </div>
-            <div id="box-ColorsContainer"></div>
-        </header>
-        <div id="Draw">
-
+            <h1 id="pageTitle" style="font-family: Arial, Helvetica, sans-serif;font-size: 64px;">Swiss</h1>
+            <div id="genSav">
+                <button class="btnGenSav" onclick="Generate()">Gerar</button>
+                <button class="btnGenSav" onclick="Save()">Salvar</button>
+            </div>
+            <div class="dividerLateral">
+                <div class="latTitleBtn">
+                    <p class="latTitle">Paleta Base</p>
+                    <button class="latBtn" onclick="Reset_Colors()">reset</button>
+                </div>
+                <hr>
+                <div id="box-ColorsContainer"></div>
+            </div>
         </div>
+        <div id="Draw"></div>
         <script src="sketch.js"></script>
     </body>
 </html>
