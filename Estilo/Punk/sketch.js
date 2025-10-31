@@ -1,7 +1,9 @@
 let Cortes = new Array(13);
 let Colors = ['#2d2b2e', '#975067','#ad9623'];
 let BaseColors = Colors.slice();
-let ColorsXtra = []
+let ColorsXtra = [];
+
+let ObjPunk;
 
 function preload() {
     for(let i=0;i<13;i++){
@@ -12,32 +14,33 @@ function preload() {
 }
 
 function setup() {
-    var cnv = createCanvas(windowWidth,windowHeight)
-    cnv.parent('Draw')
-    Generate()
-    frameRate(0)
+    ObjPunk = new Punk(Cortes,Colors,ColorsXtra);
+    var cnv = createCanvas(windowWidth,windowHeight);
+    cnv.parent('Draw');
+    draw();
+    frameRate(0);
+}
+
+function AnimSetter(){
+    let chckrAnim = document.getElementById("chckrAnimation").checked
+    if(chckrAnim){
+        frameRate(0.5);
+    }else{
+        frameRate(0);
+    }
+}
+
+function draw() {
+    ObjPunk.Colors = Colors;
+    ObjPunk.ColorsXtra = ColorsXtra;
+    ObjPunk.Generate();
 }
 
 function Save(){
-    saveCanvas('Punk -'+Date.now()+'.jpg')
-}
-
-function Generate() {
-    background(255);
-    for (let i = 0; i < 800; i++) {
-        push();
-        translate(random(0, width), random(0, height));
-        rotate(radians(random(0, 270)));
-        let s = int(random(0, Cortes.length));
-        let colors = (Colors.concat(ColorsXtra)).sort(() => Math.random() - 0.5);
-        tint(colors[int(random(0, colors.length))]);
-        strokeWeight(0.5);
-        image(Cortes[s], 0, 0);
-        pop();
-    }
+    saveCanvas('Punk -'+Date.now()+'.jpg');
 }
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
-    Generate();
+    draw();
 }

@@ -14,7 +14,7 @@
                 }else{
                     Lines = b.value
                 }
-                Generate()
+                draw()
             }
             function Reset_Colors(){
                 Lines = LinesO
@@ -26,13 +26,13 @@
         </script>
     </head>
     <body>
-        <div class="sideBar">
+        <div id="sideBar" class="sideBarOpen">
             <div id="voltar">
                 <a target="_self" href="../..">◀ Voltar</a>
             </div>
             <h1 id="pageTitle" style="font-family: 'Racing Sans One', sans-serif;font-size: 50px;">Streamline</h1>
             <div id="genSav">
-                <button class="btnGenSav" onclick="Generate()">Gerar</button>
+                <button class="btnGenSav" onclick="draw()">Gerar</button>
                 <button class="btnGenSav" onclick="Save()">Salvar</button>
             </div>
             <div class="dividerLateral">
@@ -46,8 +46,11 @@
                     <input class="btnBaseColors" type="color" onchange="ChangeColor(this,1)" value="#FFFFFF">
                 </div>
             </div>
+            <button onclick="ChangeSideBar()" id="btnSideBarHideShow" class="btnSideBarHide"><</button>
         </div>
         <div id="Draw"></div>
-        <script src="sketch.js"></script>
     </body>
+    <script src="StreamlineClass.js"></script>
+    <script src="sketch.js"></script>
+    <script src="../../SideBarController.js"></script>
 </html>
